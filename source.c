@@ -1,9 +1,15 @@
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
 
-//#include<Windows.h>
+
 
 int main() {
 	float A=0.0f , B=0.0f;
@@ -48,7 +54,11 @@ int main() {
 			A += 0.00004;
 			B += 0.00004;
 		}
-		//Sleep(100);
+		#ifdef _WIN32
+  		Sleep(50);
+  		#else
+  		usleep(50*1000);
+  		#endif
 	}
 	return 0;
 }
